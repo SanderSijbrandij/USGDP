@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // set sizes
       const p = 40
-      const h = 600
+      const h = 500
       const w = 3*datapoints + 2*p
       const sizes = { w, h, p }
 
@@ -50,6 +50,9 @@ const createChart = (w, h) => {
     .attr('id', 'chart')
     .attr('width', w)
     .attr('height', h)
+    .append('title')
+      .attr('id', 'title')
+      .text('American GDP (in billions)')
 }
 
 // Create the Y axis
@@ -89,4 +92,6 @@ const createBars = (data, scaleY, sizes) => {
       .attr('height', (d) => h - p - scaleY(d[1]))
       .attr('x', (d, i) => (1.5 * p) + (i * 3))
       .attr('y', (d) => scaleY(d[1]) + (p/2))
+      .attr('data-date', d => d[0])
+      .attr('data-gdp', d => d[1])
 }
