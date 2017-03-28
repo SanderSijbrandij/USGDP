@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // call anything that requires the data here.
       // This is the point where it's fetched.
       console.log(res)
+      createChart();
     })
 })
 
@@ -21,4 +22,17 @@ const getData = (url) => {
       else { reject(req.statusText) }
     }
   })
+}
+
+// create the SVG
+const createChart = () => {
+  const padding = 100,
+        w = 800,
+        h = 400
+
+  d3.select('body')
+    .append('svg')
+    .attr('id', 'chart')
+    .attr('width', w)
+    .attr('height', h)
 }
