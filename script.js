@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Highest: ', maxDateYear, maxGDPValue)
       // set sizes
       const p = 40
-      const h = 400
-      const w = 2*datapoints + 2*p
+      const h = 600
+      const w = 3*datapoints + 2*p
       const sizes = { w, h, p }
 
       // Create the Chart
@@ -77,7 +77,7 @@ const createBars = (data, scaleY, sizes) => {
       .attr('class', 'bar')
       .attr('width', 2)
       .attr('height', (d) => h - p - scaleY(d[1]))
-      .attr('x', (d, i) => (1.5 * p) + (i * 2))
+      .attr('x', (d, i) => (1.5 * p) + (i * 3))
       .attr('y', (d) => scaleY(d[1]) + (p/2))
 }
 
