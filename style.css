@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  font-family: sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: inherit;
+}
+h1 > span {
+  font-size: 14px;
+  display: block;
+}
