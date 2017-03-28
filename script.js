@@ -77,7 +77,7 @@ const createBars = (data, scaleY, sizes) => {
       .attr('class', 'bar')
       .attr('width', 2)
       .attr('height', (d) => h - p - scaleY(d[1]))
-      .attr('x', (d, i) => p + (i * 2))
+      .attr('x', (d, i) => (1.5 * p) + (i * 2))
       .attr('y', (d) => scaleY(d[1]) + (p/2))
 }
 
@@ -87,7 +87,7 @@ const createYAxis = (scaleY, sizes) => {
 
   d3.select('#chart')
     .append('g')
-    .attr('transform', `translate(${p}, ${p/2})`)
+    .attr('transform', `translate(${1.5 * p}, ${p/2})`)
     .call(yAxis)
 }
 
@@ -97,6 +97,6 @@ const createXAxis = (scaleX, sizes) => {
 
   d3.select('#chart')
     .append('g')
-    .attr('transform', `translate(${p}, ${h - (p/2)})`)
+    .attr('transform', `translate(${1.5 * p}, ${h - (p/2)})`)
     .call(xAxis)
 }
