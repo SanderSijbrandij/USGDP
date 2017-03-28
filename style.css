@@ -24,3 +24,7 @@ h1 > span {
 #chart {
   background-color: white;
 }
+
+.bar {
+  fill: #6491c9;
+}
