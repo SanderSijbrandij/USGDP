@@ -30,5 +30,4 @@ h1 > span {
 }
 .bar:hover {
   fill: #2b3c8f;
-  z-index: 999;
 }
