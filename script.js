@@ -69,7 +69,7 @@ const createYAxis = (scaleY, sizes) => {
 // create the X axis
 const createXAxis = (scaleX, sizes) => {
   const { w, h, p } = sizes
-  const xAxis = d3.axisBottom(scaleX).tickFormat(d3.timeFormat('%Y'))
+  const xAxis = d3.axisBottom(scaleX).ticks(w/60).tickFormat(d3.timeFormat('%Y'))
 
   d3.select('#chart')
     .append('g')
