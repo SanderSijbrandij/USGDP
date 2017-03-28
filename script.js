@@ -7,10 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const datapoints = res.data.length
       const minGDPValue = d3.min(res.data, d => d[1])
       const maxGDPValue = d3.max(res.data, d => d[1])
-      const minDateValue = d3.min(res.data, d => d[0])
-      const maxDateValue = d3.max(res.data, d => d[0])
-      const minDateYear = minDateValue.split('').slice(0,4).join('')
-      const maxDateYear = maxDateValue.split('').slice(0,4).join('')
+
+      const minDateValue = new Date(d3.min(res.data, d => d[0]))
+      const maxDateValue = new Date(d3.max(res.data, d => d[0]))
 
       // set sizes
       const p = 40
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // set scale & domain
       const scaleY = d3.scaleLinear().domain([minGDPValue, maxGDPValue]).range([h-p, 0])
-      const scaleX = d3.scaleLinear().domain([minDateYear, maxDateYear]).range([0, w-2*p])
+      const scaleX = d3.scaleLinear().domain([minDateValue, maxDateValue]).range([0, w-2*p])
 
       // Create the Chart
       createChart(w, h)
@@ -47,36 +46,36 @@ const getData = (url) => {
 const createChart = (w, h) => {
   d3.select('body')
     .append('svg')
-    .attr('id', 'chart')
-    .attr('width', w)
-    .attr('height', h)
-    .append('title')
-      .attr('id', 'title')
-      .text('American GDP (in billions)')
+      .attr('id', 'chart')
+      .attr('width', w)
+      .attr('height', h)
+      .append('title')
+        .attr('id', 'title')
+        .text('American GDP (in billions)')
 }
 
 // Create the Y axis
 const createYAxis = (scaleY, sizes) => {
   const { w, h, p } = sizes
-  const yAxis = d3.axisLeft(scaleY)
+  const yAxis = d3.axisLeft(scaleY).tickFormat(d => `$${d} B`)
 
   d3.select('#chart')
     .append('g')
-    .attr('id', 'y-axis')
-    .attr('transform', `translate(${1.5 * p}, ${p/2})`)
-    .call(yAxis)
+      .attr('id', 'y-axis')
+      .attr('transform', `translate(${1.5 * p}, ${p/2})`)
+      .call(yAxis)
 }
 
 // create the X axis
 const createXAxis = (scaleX, sizes) => {
   const { w, h, p } = sizes
-  const xAxis = d3.axisBottom(scaleX)
+  const xAxis = d3.axisBottom(scaleX).tickFormat(d3.timeFormat('%Y'))
 
   d3.select('#chart')
     .append('g')
-    .attr('id', 'x-axis')
-    .attr('transform', `translate(${1.5 * p}, ${h - (p/2)})`)
-    .call(xAxis)
+      .attr('id', 'x-axis')
+      .attr('transform', `translate(${1.5 * p}, ${h - (p/2)})`)
+      .call(xAxis)
 }
 
 // Add the bars
